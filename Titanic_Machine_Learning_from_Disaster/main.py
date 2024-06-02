@@ -71,12 +71,12 @@ param = {
     'objective': 'multi:softmax', #Going with softmax as we want the most likely
     'num_class': 2 
     } 
-epochs = 10 #number of iterations
+epochs = 9 #number of iterations
 
 model = xgb.train(param, train, epochs)
 
 predictions = model.predict(X_test)
 
 
-output_data = pd.DataFrame({'Survived': predictions})
-output_data.to_excel("output.xlsx", index=False)
+output_data = pd.DataFrame({'PassengerId': testdf['PassengerId'], 'Survived': predictions})
+output_data.to_csv("output.csv", index=False)
