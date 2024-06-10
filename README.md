@@ -50,14 +50,68 @@ In this version, I made several changes to outperform the previous model primari
 * Model Stacking to improve prediction quality
 
 #### Performance
-This version scored a 0.13871, placing it at 1871 out of 5029 on the leaderboard at the time of writing. 
+This version scored 0.13871, placing it at 1871 out of 5029 on the leaderboard at the time of writing. 
 
 #### Changes and Improvements for the Future
-* Overall similar changes to the version 1 need to be made. Specifically a larger focus on reducing the features to prevent overfitting
+* Overall similar changes to version 1 need to be made. Specifically a larger focus on reducing the features to prevent overfitting
 * Implement K-means clustering in the beginning to try to find more relationships between the data
 * Try reducing the amount of features to reduce over-fitting
-* 
 
 
 ## Spaceship Titanic
+For this dataset I wanted to try a few different model types and settled on a RandomForest, NeuralNetwork, and a classic xgboost model (general trend here).
 
+### Random Forest
+* Data Loading: Loaded the training and test datasets into a Pandas data frame to modify it
+* Feature Selection: Dropped irrelevant features
+* Data Prepreprocessing:
+  * Replaced missing values with median
+  * One hot encoded categorical features to allow them to be processed by the Random Forest Model
+  * Standardized numerical values
+* Model Training:
+  * Used Random Forest Classifier with hyper-params tuned by GridSearch CV
+  * Assessed using accuracy ratings
+* Performance
+  * This model scored 0.79261 with the target being 1
+
+### Neural Network Classifier
+
+* Data Loading: Loaded the training and test datasets into a Pandas data frame to modify it
+* Feature Selection: Dropped irrelevant features
+* Data Prepreprocessing:
+  * Replaced missing values with median
+  * One hot encoded categorical features to allow them to be processed by the Random Forest Model
+  * Standardized numerical values
+* Model Training:
+   * Used a Keras model
+   * Optimizer was set to 'adam' or Adaptive Learning Rate which adjusts the lr for each param individually
+   * Activation function was Relu which is the Rectified Linear unit.
+   * Had 3 layers of 64, 32, and 1
+   * activation was a sigmoid in the last layer for the binary output
+   * Loss function was binary cross entropy given the binary nature of the prediction
+* Performance
+  * This model scored 0.49310 with the target being 1
+  * Compilation was extremely slow so I did not have enough opportunity to fiddle with the hyperparams
+
+### xgBoost Model
+
+* Data Loading: Loaded the training and test datasets into a Pandas data frame to modify it
+* Feature Selection: Dropped irrelevant features (PassengerId, Name)
+* Data Prepreprocessing:
+  * Replaced missing values with median
+  * One hot encoded categorical features to allow them to be processed by the Random Forest Model
+  * Standardized numerical values using Standard Scaler
+* Model Training:
+   * Used a XGBoost classifier
+   * GridSearchCV tuned the hyperparameters
+      * N Estimators: Number of trees ranged from 100 to 200
+      * Max_depth: Max depth of the trees 3,5, or 7
+      * Learning rate: Change in step size 0.01, 0.1,0.2
+  * Once these tests were done the best performing model was selected      
+* Performance
+  * This model scored 0.79565 with the target being 1
+  * The model performed reasonably well, but there might be room for further improvements by exploring different hyperparameters or additional feature engineering.
+ 
+    
+### Conclusion
+After trying to implement these three models I found that the XGBoost model performed the best with the Random Forest right behind it. I cannot make an adequate conclusion regarding the Neural network given my limited ability to tune the parameters due to the excessive run time. I also believe the same to be with the Random forest model, if I had more experience and knowledge I would be able to tune the parameters to make it perform much better. Also from my experioence I found that the random forest was pretty simple to setup and will definetly be using it in the future.
