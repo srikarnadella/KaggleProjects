@@ -4,7 +4,8 @@ https://www.kaggle.com/srikarnadella
 ## Table of Contents
 1. [Titanic Machine Learning from Disaster](#titanic-machine-learning-from-disaster)
 2. [House Prices-AdvancedRegressionTechniques](#house-prices-advancedregressiontechniques)
-    
+3. [Spaceship Titanic](#spaceship-titanic)
+
 
 
 ## Titanic Machine Learning from Disaster
@@ -55,3 +56,8 @@ This version scored a 0.13871, placing it at 1871 out of 5029 on the leaderboard
 * Overall similar changes to the version 1 need to be made. Specifically a larger focus on reducing the features to prevent overfitting
 * Implement K-means clustering in the beginning to try to find more relationships between the data
 * Try reducing the amount of features to reduce over-fitting
+* 
+
+
+## Spaceship Titanic
+
