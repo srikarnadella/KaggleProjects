@@ -8,7 +8,7 @@ Used an XGBoost model. Had to do a lot of data cleaning to prepare the dataset f
 ## House Prices - Advanced Regression Techniques
 Given the size of this dataset (80 columns) there was significant data cleaning, preprocessing, and hyperparameter tuning to achieve a competitive score. I tried optimizing the hyper-parameters a lot to try and eek out a higher accuracy but was stalled out. Below are the details of two different versions of the code used, including their performance and key differences.
 
-### Version 1
+### Version 1 (traditional xgboost model main.py)
 #### Approach
 In this version, I performed the following steps:
 * Data Loading: Loaded the train and test datasets into pandas Data Frames
@@ -31,7 +31,7 @@ This version scored 0.13686 (aiming to get a 0), which placed me at 1619 out of 
 * Try reducing the amount of features to reduce over-fitting
 * Find a better way of tuning the hyper-params rather than random sampling
 
-### Version 2
+### Version 2 (Stacking Model and Bayesian Optimization)
 #### Approach
 In this version, I made several changes to outperform the previous model primarily by implementing Bayesian Optimization.
 
