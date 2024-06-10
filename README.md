@@ -11,18 +11,38 @@ Given the size of this dataset (80 columns) there was significant data cleaning,
 ### Version 1
 #### Approach
 In this version, I performed the following steps:
+*Data Loading: Loaded the train and test datasets into pandas Data Frames
+*Feature Selection: Selected a comprehensive list of features relevant to predicting house prices.
+*Data Preprocessing: 
+  *Handled missing values using median for numerical features and most frequent for categorical features.
+  *One-hot encoded categorical features to convert them into a numerical format suitable for the XGBoost model.
+  *Standardized numerical features to ensure they are on a similar scale.
 
-Data Loading: Loaded the train and test datasets.
-Feature Selection: Selected a comprehensive list of features relevant to predicting house prices.
-Data Preprocessing:
-Handled missing values using median for numerical features and most frequent for categorical features.
-One-hot encoded categorical features to convert them into a numerical format suitable for the XGBoost model.
-Standardized numerical features to ensure they are on a similar scale.
-Model Training:
-Used an XGBoost regressor with default parameters.
-Model Evaluation:
-Assessed the model using cross-validation and mean squared error metrics.
-Prediction and Output:
-Predicted house prices on the test set and saved the output in a CSV file with a timestamp.
+#### Model Training:
+*Used an XGBoost regressor that had its hyperparameters tuned by RandomizedSearchCV.
+*Model Evaluation: Assessed the model using cross-validation and mean squared error metrics.
+*Prediction and Output: Predicted house prices on the test set and saved the output in a CSV file with a timestamp.
+
+#### Performance
+This version scored 0.13686 (aiming to get a 0), which placed me at 1619 out of 5029 on the leaderboard at the time of writing.
+
+#### Changes and Improvements for the Future
+*Implement K-means clustering in the beginning to try to find more relationships between the data
+*Try reducing the amount of features to reduce over-fitting
+*Find a better way of tuning the hyper-params rather than random sampling
+
+### Version 2
+#### Approach
+In this version, I made several changes to outperform the previous model primarily by implementing Bayesian Optimization.
+
+*Enhanced Feature Selection: Included additional relevant features.
+Optimized Data Preprocessing:
+Improved handling of missing values.
+Added feature engineering steps, such as extracting parts of the date and creating new interaction terms.
+Advanced Hyperparameter Tuning:
+Used a more refined hyperparameter search space for RandomizedSearchCV.
+Increased the number of iterations and cross-validation folds for better parameter optimization.
+Detailed Model Evaluation:
+Performed more extensive cross-validation and error analysis.
 Performance
-This version scored 0.12784, which placed me at 2340 out of 15795 on the leaderboard at the time of writing.
+This version showed better performance but slightly lower than the initial high-scoring version. However, it demonstrates the process of incremental improvement and detailed analysis, crucial for understanding the model behavior.
